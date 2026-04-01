@@ -6,18 +6,20 @@ import NavBar from "./NavBar";
 function App() {
   return (
     <>
-      <div className="p-4">
+      <header className="p-4 border-b border-body">
         <NavBar />
-      </div>
-      <div className="p-4 bg-neutral">
-        <Hero />
-      </div>
-      <div className="p-4 bg-neutral border-b border-body">
-        <Movies />
-      </div>
-      <div className="p-">
+      </header>
+      <main className="bg-neutral">
+        <section className="p-4 ">
+          <Hero />
+        </section>
+        <section className="p-4 border-b border-body">
+          <Movies />
+        </section>
+      </main>
+      <footer className="p-4">
         <Footer />
-      </div>
+      </footer>
     </>
   );
 }

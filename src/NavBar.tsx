@@ -2,7 +2,7 @@ import { CircleUser } from "lucide-react";
 
 function NavBar() {
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+    <nav className="grid grid-cols-[1fr_auto_1fr] items-center">
       <p className="font-headline text-2xl font-extrabold tracking-tight text-primary">
         CineLight
       </p>
@@ -15,7 +15,7 @@ function NavBar() {
         </ul>
       </li>
       <CircleUser className="justify-self-end" />
-    </div>
+    </nav>
   );
 }
 

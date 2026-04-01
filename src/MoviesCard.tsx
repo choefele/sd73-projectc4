@@ -12,8 +12,8 @@ function MoviesCard({
   rating: number;
 }) {
   return (
-    <div className="group flex flex-col bg-white rounded-lg overflow-hidden transition-all duration-300">
-      <div className="aspect-2/3 w-full bg-surface-container overflow-hidden relative">
+    <article className="group flex flex-col bg-white rounded-lg overflow-hidden transition-all duration-300">
+      <div className="aspect-2/3 w-full overflow-hidden relative">
         <img
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           data-alt="Cinematic movie poster of a neon-lit futuristic city at night with rain reflecting on the pavement and a lone figure"
@@ -40,7 +40,7 @@ function MoviesCard({
           Add to Favourites
         </button>
       </div>
-    </div>
+    </article>
   );
 }
 
