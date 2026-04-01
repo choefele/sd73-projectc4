@@ -19,7 +19,7 @@
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
     color: var(--color-body);
-    background-color: #fff;
+    background-color: var(--color-neutral);
   }
 }
 
