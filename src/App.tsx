@@ -1,13 +1,23 @@
+import Footer from "./Footer";
+import Hero from "./Hero";
+import Movies from "./Movies";
 import NavBar from "./NavBar";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <h1 className="">Text H1</h1>
-      <h2 className="">Text H2</h2>
-      <h3 className="">Text H3</h3>
-      <p className="">Text p</p>
+      <div className="p-4">
+        <NavBar />
+      </div>
+      <div className="p-4 bg-neutral">
+        <Hero />
+      </div>
+      <div className="p-4 bg-neutral border-b border-body">
+        <Movies />
+      </div>
+      <div className="p-">
+        <Footer />
+      </div>
     </>
   );
 }
