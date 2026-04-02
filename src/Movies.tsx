@@ -51,6 +51,8 @@ function Movies() {
               year={movie.release_date}
               genre="Genre"
               rating={movie.vote_average}
+              posterPath={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              posterAlt={movie.title}
             />
           ))}
         </div>
