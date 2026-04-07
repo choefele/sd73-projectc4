@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Movies from "./Movies";
@@ -10,12 +11,22 @@ function App() {
         <NavBar />
       </header>
       <main className="bg-neutral mt-18">
-        <section className="p-4 ">
-          <Hero />
-        </section>
-        <section className="p-4 border-b border-body">
-          <Movies />
-        </section>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <section className="p-4 ">
+                  <Hero />
+                </section>
+                <section className="p-4 border-b border-body">
+                  <Movies />
+                </section>
+              </>
+            }
+          />
+          <Route path="*" element={<section className="p-4">Page not found.</section>} />
+        </Routes>
       </main>
       <footer className="p-4 bg-white">
         <Footer />
