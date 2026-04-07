@@ -13,9 +13,13 @@ function isFavorite(id: number): boolean {
   return getStoredFavorites().includes(id);
 }
 
-function storeFavorite(id: number): void {
+function toggleFavourite(id: number): void {
   const ids = getStoredFavorites();
-  if (ids.includes(id)) {
+  const idIndex = ids.indexOf(id);
+
+  if (idIndex >= 0) {
+    ids.splice(idIndex, 1);
+    setStoredFavorites(ids);
     return;
   }
 
@@ -23,4 +27,4 @@ function storeFavorite(id: number): void {
   setStoredFavorites(ids);
 }
 
-export { isFavorite, storeFavorite };
+export { isFavorite, toggleFavourite };
