@@ -1,6 +1,7 @@
 import { Star } from "lucide-react";
 
 function MoviesCard({
+  id,
   title,
   year,
   genre,
@@ -8,6 +9,7 @@ function MoviesCard({
   posterPath,
   posterAlt,
 }: {
+  id: number;
   title: string;
   year: string;
   genre: string;
@@ -41,7 +43,7 @@ function MoviesCard({
         </div>
         <button className="mt-auto w-full py-2 px-3 bg-[#eff1f3] hover:bg-primary-container/20 text-primary rounded font-bold text-xs flex items-center justify-center gap-2 transition-colors">
           <Star className="h-lh" />
-          Add to Favourites
+          Add to Favourites {id}
         </button>
       </div>
     </article>

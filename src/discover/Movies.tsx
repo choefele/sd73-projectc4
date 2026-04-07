@@ -50,6 +50,7 @@ function Movies() {
           {moviesResponse.results.map((movie) => (
             <MoviesCard
               key={movie.id}
+              id={movie.id}
               title={movie.title}
               year={movie.release_date}
               genre="Genre"
