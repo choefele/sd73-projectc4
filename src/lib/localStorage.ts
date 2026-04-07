@@ -9,7 +9,7 @@ function setStoredFavorites(ids: number[]): void {
   globalThis.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(ids));
 }
 
-function isFavorite(id: number): boolean {
+function isFavourite(id: number): boolean {
   return getStoredFavorites().includes(id);
 }
 
@@ -27,4 +27,4 @@ function toggleFavourite(id: number): void {
   setStoredFavorites(ids);
 }
 
-export { isFavorite, toggleFavourite };
+export { isFavourite, toggleFavourite };

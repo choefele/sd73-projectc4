@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isFavorite, toggleFavourite } from "./localStorage";
+import { isFavourite, toggleFavourite } from "./localStorage";
 
 let nextMovieId = Date.now() * 1000;
 
@@ -12,7 +12,7 @@ describe("localStorage favorites API", () => {
   it("returns false for a movie ID that was never stored", () => {
     const movieId = createMovieId();
 
-    expect(isFavorite(movieId)).toBe(false);
+    expect(isFavourite(movieId)).toBe(false);
   });
 
   it("marks a movie ID as favorite after toggling it once", () => {
@@ -20,7 +20,7 @@ describe("localStorage favorites API", () => {
 
     toggleFavourite(movieId);
 
-    expect(isFavorite(movieId)).toBe(true);
+    expect(isFavourite(movieId)).toBe(true);
   });
 
   it("does not mark a different movie ID as favorite", () => {
@@ -29,8 +29,8 @@ describe("localStorage favorites API", () => {
 
     toggleFavourite(favoriteMovieId);
 
-    expect(isFavorite(favoriteMovieId)).toBe(true);
-    expect(isFavorite(otherMovieId)).toBe(false);
+    expect(isFavourite(favoriteMovieId)).toBe(true);
+    expect(isFavourite(otherMovieId)).toBe(false);
   });
 
   it("tracks multiple favorite movie IDs independently", () => {
@@ -42,9 +42,9 @@ describe("localStorage favorites API", () => {
     toggleFavourite(movieIdB);
     toggleFavourite(movieIdC);
 
-    expect(isFavorite(movieIdA)).toBe(true);
-    expect(isFavorite(movieIdB)).toBe(true);
-    expect(isFavorite(movieIdC)).toBe(true);
+    expect(isFavourite(movieIdA)).toBe(true);
+    expect(isFavourite(movieIdB)).toBe(true);
+    expect(isFavourite(movieIdC)).toBe(true);
   });
 
   it("removes a favorite when toggling the same movie ID twice", () => {
@@ -53,6 +53,6 @@ describe("localStorage favorites API", () => {
     toggleFavourite(movieId);
     toggleFavourite(movieId);
 
-    expect(isFavorite(movieId)).toBe(false);
+    expect(isFavourite(movieId)).toBe(false);
   });
 });
