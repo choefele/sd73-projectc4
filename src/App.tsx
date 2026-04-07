@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import Discover from "./discover/Discover";
+import Favourites from "./favourites/Favourites";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <main className="bg-neutral mt-18">
         <Routes>
           <Route path="/" element={<Discover />} />
+          <Route path="/favourites" element={<Favourites />} />
           <Route
             path="*"
             element={<section className="p-4">Page not found.</section>}
