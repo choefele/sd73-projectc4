@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
-import Discover from "./Discover";
+import Discover from "./discover/Discover";
 
 function App() {
   return (

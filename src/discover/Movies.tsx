@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import MoviesCard from "./MoviesCard";
-import { fetchPopularMovies, type TmdbPopularMoviesResponse } from "./tmdbapi";
+import {
+  fetchPopularMovies,
+  type TmdbPopularMoviesResponse,
+} from "../lib/tmdbapi";
 
 function Movies() {
   const [moviesResponse, setMoviesResponse] =
