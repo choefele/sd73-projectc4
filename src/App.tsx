@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router";
 import Footer from "./Footer";
-import Hero from "./Hero";
-import Movies from "./Movies";
 import NavBar from "./NavBar";
+import Discover from "./Discover";
 
 function App() {
   return (
@@ -12,20 +11,11 @@ function App() {
       </header>
       <main className="bg-neutral mt-18">
         <Routes>
+          <Route path="/" element={<Discover />} />
           <Route
-            path="/"
-            element={
-              <>
-                <section className="p-4 ">
-                  <Hero />
-                </section>
-                <section className="p-4 border-b border-body">
-                  <Movies />
-                </section>
-              </>
-            }
+            path="*"
+            element={<section className="p-4">Page not found.</section>}
           />
-          <Route path="*" element={<section className="p-4">Page not found.</section>} />
         </Routes>
       </main>
       <footer className="p-4 bg-white">
