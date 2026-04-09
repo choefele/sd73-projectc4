@@ -42,7 +42,6 @@ function Movies() {
 
   return (
     <>
-      <h2>Movies</h2>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {moviesResponse && (

@@ -10,13 +10,16 @@ type Movie = {
   posterAlt: string;
 };
 
-function getStoredFavorites(): Movie[] {
+function getFavourites(): Movie[] {
   const raw = globalThis.localStorage.getItem(FAVORITES_STORAGE_KEY);
   return raw ? (JSON.parse(raw) as Movie[]) : [];
 }
 
 function setStoredFavorites(movies: Movie[]): void {
-  globalThis.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(movies));
+  globalThis.localStorage.setItem(
+    FAVORITES_STORAGE_KEY,
+    JSON.stringify(movies),
+  );
 }
 
 function isFavourite(id: number): boolean {
@@ -24,7 +27,7 @@ function isFavourite(id: number): boolean {
 }
 
 function storeFavourite(movie: Movie): void {
-  const movies = getStoredFavorites();
+  const movies = getFavourites();
   const { id } = movie;
 
   if (movies.some((storedMovie) => storedMovie.id === id)) {
@@ -36,14 +39,14 @@ function storeFavourite(movie: Movie): void {
 }
 
 function removeFavourite(id: number): void {
-  const movies = getStoredFavorites();
+  const movies = getFavourites();
   const filteredMovies = movies.filter((storedMovie) => storedMovie.id !== id);
 
   setStoredFavorites(filteredMovies);
 }
 
 function getFavourite(id: number): Movie | null {
-  return getStoredFavorites().find((storedMovie) => storedMovie.id === id) ?? null;
+  return getFavourites().find((storedMovie) => storedMovie.id === id) ?? null;
 }
 
 export {
@@ -51,5 +54,6 @@ export {
   storeFavourite,
   removeFavourite,
   getFavourite,
+  getFavourites,
   type Movie,
 };
