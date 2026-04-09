@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MoviesCard from "./MoviesCard";
+import MoviesCard from "../components/MoviesCard";
 import {
   fetchPopularMovies,
   type TmdbPopularMoviesResponse,
