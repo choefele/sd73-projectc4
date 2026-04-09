@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { isFavourite, toggleFavourite } from "../lib/localStorage";
+import { isFavourite, removeFavourite, storeFavourite } from "../lib/localStorage";
 import { useEffect, useState } from "react";
 
 function MoviesCard({
@@ -53,8 +53,23 @@ function MoviesCard({
         </div>
         <button
           onClick={() => {
-            setMarkedAsFavourite((previous) => !previous);
-            toggleFavourite(id);
+            setMarkedAsFavourite((previous) => {
+              if (previous) {
+                removeFavourite(id);
+                return false;
+              }
+
+              storeFavourite({
+                id,
+                title,
+                year,
+                genre,
+                rating,
+                posterPath,
+                posterAlt,
+              });
+              return true;
+            });
           }}
           className="mt-auto w-full py-2 px-3 bg-[#eff1f3] hover:bg-primary-container/20 text-primary rounded font-bold text-xs flex items-center justify-center gap-2 transition-colors"
         >

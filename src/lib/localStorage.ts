@@ -1,30 +1,55 @@
-const FAVORITES_STORAGE_KEY = "favoriteMovieIds";
+const FAVORITES_STORAGE_KEY = "favoriteMovies";
 
-function getStoredFavorites(): number[] {
+type Movie = {
+  id: number;
+  title: string;
+  year: string;
+  genre: string;
+  rating: number;
+  posterPath: string;
+  posterAlt: string;
+};
+
+function getStoredFavorites(): Movie[] {
   const raw = globalThis.localStorage.getItem(FAVORITES_STORAGE_KEY);
-  return raw ? (JSON.parse(raw) as number[]) : [];
+  return raw ? (JSON.parse(raw) as Movie[]) : [];
 }
 
-function setStoredFavorites(ids: number[]): void {
-  globalThis.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(ids));
+function setStoredFavorites(movies: Movie[]): void {
+  globalThis.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(movies));
 }
 
 function isFavourite(id: number): boolean {
-  return getStoredFavorites().includes(id);
+  return getFavourite(id) !== null;
 }
 
-function toggleFavourite(id: number): void {
-  const ids = getStoredFavorites();
-  const idIndex = ids.indexOf(id);
+function storeFavourite(movie: Movie): void {
+  const movies = getStoredFavorites();
+  const { id } = movie;
 
-  if (idIndex >= 0) {
-    ids.splice(idIndex, 1);
-    setStoredFavorites(ids);
+  if (movies.some((storedMovie) => storedMovie.id === id)) {
     return;
   }
 
-  ids.push(id);
-  setStoredFavorites(ids);
+  movies.push(movie);
+  setStoredFavorites(movies);
 }
 
-export { isFavourite, toggleFavourite };
+function removeFavourite(id: number): void {
+  const movies = getStoredFavorites();
+  const filteredMovies = movies.filter((storedMovie) => storedMovie.id !== id);
+
+  setStoredFavorites(filteredMovies);
+}
+
+function getFavourite(id: number): Movie | null {
+  return getStoredFavorites().find((storedMovie) => storedMovie.id === id) ?? null;
+}
+
+export {
+  isFavourite,
+  storeFavourite,
+  removeFavourite,
+  getFavourite,
+  type Movie,
+};

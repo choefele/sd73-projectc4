@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isFavourite, toggleFavourite } from "./localStorage";
+import { getFavourite, removeFavourite, storeFavourite, type Movie } from "./localStorage";
 
 let nextMovieId = Date.now() * 1000;
 
@@ -8,51 +8,64 @@ function createMovieId(): number {
   return nextMovieId;
 }
 
+function createMovie(id: number): Movie {
+  return {
+    id,
+    title: "Test Movie",
+    year: "2026",
+    genre: "Drama",
+    rating: 8.2,
+    posterPath: "/test-poster.jpg",
+    posterAlt: "Test movie poster",
+  };
+}
+
 describe("localStorage favorites API", () => {
-  it("returns false for a movie ID that was never stored", () => {
+  it("returns null for a movie ID that was never stored", () => {
     const movieId = createMovieId();
 
-    expect(isFavourite(movieId)).toBe(false);
+    expect(getFavourite(movieId)).toBeNull();
   });
 
-  it("marks a movie ID as favorite after toggling it once", () => {
+  it("returns a movie after storing it", () => {
     const movieId = createMovieId();
+    const movie = createMovie(movieId);
 
-    toggleFavourite(movieId);
+    storeFavourite(movie);
 
-    expect(isFavourite(movieId)).toBe(true);
+    expect(getFavourite(movieId)).toEqual(movie);
   });
 
-  it("does not mark a different movie ID as favorite", () => {
+  it("does not return a different stored movie", () => {
     const favoriteMovieId = createMovieId();
     const otherMovieId = createMovieId();
 
-    toggleFavourite(favoriteMovieId);
+    storeFavourite(createMovie(favoriteMovieId));
 
-    expect(isFavourite(favoriteMovieId)).toBe(true);
-    expect(isFavourite(otherMovieId)).toBe(false);
+    expect(getFavourite(favoriteMovieId)).not.toBeNull();
+    expect(getFavourite(otherMovieId)).toBeNull();
   });
 
-  it("tracks multiple favorite movie IDs independently", () => {
+  it("tracks multiple favorite movies independently", () => {
     const movieIdA = createMovieId();
     const movieIdB = createMovieId();
     const movieIdC = createMovieId();
 
-    toggleFavourite(movieIdA);
-    toggleFavourite(movieIdB);
-    toggleFavourite(movieIdC);
+    storeFavourite(createMovie(movieIdA));
+    storeFavourite(createMovie(movieIdB));
+    storeFavourite(createMovie(movieIdC));
 
-    expect(isFavourite(movieIdA)).toBe(true);
-    expect(isFavourite(movieIdB)).toBe(true);
-    expect(isFavourite(movieIdC)).toBe(true);
+    expect(getFavourite(movieIdA)).not.toBeNull();
+    expect(getFavourite(movieIdB)).not.toBeNull();
+    expect(getFavourite(movieIdC)).not.toBeNull();
   });
 
-  it("removes a favorite when toggling the same movie ID twice", () => {
+  it("returns null after removing a stored movie ID", () => {
     const movieId = createMovieId();
 
-    toggleFavourite(movieId);
-    toggleFavourite(movieId);
+    storeFavourite(createMovie(movieId));
+    removeFavourite(movieId);
 
-    expect(isFavourite(movieId)).toBe(false);
+    expect(getFavourite(movieId)).toBeNull();
   });
 });
