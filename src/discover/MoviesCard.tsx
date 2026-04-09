@@ -1,4 +1,6 @@
 import { Star } from "lucide-react";
+import { isFavourite, toggleFavourite } from "../lib/localStorage";
+import { useEffect, useState } from "react";
 
 function MoviesCard({
   id,
@@ -17,6 +19,14 @@ function MoviesCard({
   posterPath: string;
   posterAlt: string;
 }) {
+  const [isMarkedAsFavourite, setMarkedAsFavourite] = useState(() =>
+    isFavourite(id),
+  );
+
+  useEffect(() => {
+    setMarkedAsFavourite(isFavourite(id));
+  }, [id]);
+
   return (
     <article className="group flex flex-col bg-white rounded-lg overflow-hidden transition-all duration-300">
       <div className="aspect-2/3 w-full overflow-hidden relative">
@@ -41,9 +51,15 @@ function MoviesCard({
             {year} • {genre}
           </p>
         </div>
-        <button className="mt-auto w-full py-2 px-3 bg-[#eff1f3] hover:bg-primary-container/20 text-primary rounded font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+        <button
+          onClick={() => {
+            setMarkedAsFavourite((previous) => !previous);
+            toggleFavourite(id);
+          }}
+          className="mt-auto w-full py-2 px-3 bg-[#eff1f3] hover:bg-primary-container/20 text-primary rounded font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+        >
           <Star className="h-lh" />
-          Add to Favourites {id}
+          {isMarkedAsFavourite ? "Remove from Favourites" : "Add to Favourites"}
         </button>
       </div>
     </article>

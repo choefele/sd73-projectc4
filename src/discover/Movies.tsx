@@ -43,7 +43,7 @@ function Movies() {
   return (
     <>
       <h2>Movies</h2>
-      {loading && <p>Loading..</p>}
+      {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {moviesResponse && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
